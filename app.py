@@ -44,12 +44,11 @@ def callback():
 def handle_message(event):
     message = text=event.message.text
     if re.match('告訴我秘密',message):
-        # 貼圖查詢：https://developers.line.biz/en/docs/messaging-api/sticker-list/#specify-sticker-in-message-object
-        sticker_message = StickerSendMessage(
-            package_id='789',
-            sticker_id='10859'
+        audio_message = AudioSendMessage(
+            original_content_url='https://campus-studio.com/download/twsong.mp3',
+            duration=81000
         )
-        line_bot_api.reply_message(event.reply_token, sticker_message)
+        line_bot_api.reply_message(event.reply_token, audio_message)
     else:
         line_bot_api.reply_message(event.reply_token, TextSendMessage(message))
 #主程式
